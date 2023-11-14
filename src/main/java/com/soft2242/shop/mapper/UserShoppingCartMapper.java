@@ -17,5 +17,5 @@ import java.util.List;
  */
 public interface UserShoppingCartMapper extends BaseMapper<UserShoppingCart> {
 
-    List<CartGoodsVO> getCartGoodsInfo(@Param("is") Integer id);
+    List<CartGoodsVO> getCartGoodsInfo(@Param("id") Integer id);
 }
