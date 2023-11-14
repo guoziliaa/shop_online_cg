@@ -29,4 +29,6 @@ public interface UserShoppingCartService extends IService<UserShoppingCart> {
 
 //    删除购物车
     void removeCartGoods(Integer userId,List<Integer> ids);
+
+    void editCartSelected(Boolean selected,Integer userId);
 }
