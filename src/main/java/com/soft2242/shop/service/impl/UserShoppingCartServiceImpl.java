@@ -12,6 +12,8 @@ import com.soft2242.shop.vo.CartGoodsVO;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务实现类
@@ -28,22 +30,22 @@ public class UserShoppingCartServiceImpl extends ServiceImpl<UserShoppingCartMap
     @Override
     public CartGoodsVO addShopCart(CartQuery query) {
         Goods goods=goodsMapper.selectById(query.getId());
-        if(goods==null){
+        if(goods == null){
             throw  new ServerException("商品信息不存在");
         }
-        if(query.getCount()>goods.getInventory()){
+        if(query.getCount() > goods.getInventory()){
             throw  new ServerException("商品库存不足");
         }
-        UserShoppingCart userShoppingCart=new UserShoppingCart();
+        UserShoppingCart userShoppingCart = new UserShoppingCart();
         userShoppingCart.setUserId(query.getUserId());
-        userShoppingCart.setGoodsId(query.getId());
+        userShoppingCart.setGoodsId(goods.getId());
         userShoppingCart.setPrice(goods.getPrice());
         userShoppingCart.setCount(query.getCount());
         userShoppingCart.setAttrsText(query.getAttrsText());
         userShoppingCart.setSelected(false);
         baseMapper.insert(userShoppingCart);
 
-        CartGoodsVO goodsVO=new CartGoodsVO();
+        CartGoodsVO goodsVO = new CartGoodsVO();
         goodsVO.setId(userShoppingCart.getId());
         goodsVO.setName(goods.getName());
         goodsVO.setAttrsText(query.getAttrsText());
@@ -55,5 +57,11 @@ public class UserShoppingCartServiceImpl extends ServiceImpl<UserShoppingCartMap
         goodsVO.setPicture(goods.getCover());
         goodsVO.setDiscount(goods.getDiscount());
         return goodsVO;
+    }
+
+    @Override
+    public List<CartGoodsVO> shopCartList(Integer userId) {
+        List<CartGoodsVO> list = baseMapper.getCartGoodsInfo(userId);
+        return list;
     }
 }

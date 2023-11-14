@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.soft2242.shop.query.CartQuery;
 import com.soft2242.shop.vo.CartGoodsVO;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -15,5 +17,9 @@ import com.soft2242.shop.vo.CartGoodsVO;
  */
 public interface UserShoppingCartService extends IService<UserShoppingCart> {
 
+//    加入购物车
     CartGoodsVO addShopCart(CartQuery query);
+
+//    获取购物车列表
+    List<CartGoodsVO> shopCartList(Integer userId);
 }

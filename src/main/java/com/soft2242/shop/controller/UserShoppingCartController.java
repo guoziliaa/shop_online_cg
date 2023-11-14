@@ -1,18 +1,23 @@
 package com.soft2242.shop.controller;
 
+
+
 import com.soft2242.shop.common.result.Result;
 import com.soft2242.shop.query.CartQuery;
 import com.soft2242.shop.service.UserShoppingCartService;
 import com.soft2242.shop.vo.CartGoodsVO;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 import static com.soft2242.shop.common.utils.ObtainUserIdUtils.getUserId;
 
@@ -37,6 +42,14 @@ public class UserShoppingCartController {
         query.setUserId(getUserId(request));
         CartGoodsVO goodsVO = userShoppingCartService.addShopCart(query);
         return Result.ok(goodsVO);
+    }
+
+    @Operation(summary = "获取购物车列表")
+    @GetMapping("list")
+    public Result<List<CartGoodsVO>> shopCartList(HttpServletRequest request) {
+        Integer userId = getUserId(request);
+        List<CartGoodsVO> list = userShoppingCartService.shopCartList(userId);
+        return Result.ok(list);
     }
 
 }
