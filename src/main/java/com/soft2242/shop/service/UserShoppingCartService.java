@@ -2,6 +2,8 @@ package com.soft2242.shop.service;
 
 import com.soft2242.shop.entity.UserShoppingCart;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.soft2242.shop.query.CartQuery;
+import com.soft2242.shop.vo.CartGoodsVO;
 
 /**
  * <p>
@@ -13,4 +15,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface UserShoppingCartService extends IService<UserShoppingCart> {
 
+    CartGoodsVO addShopCart(CartQuery query);
 }

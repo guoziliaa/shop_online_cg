@@ -33,7 +33,7 @@ public class UserShippingAddressServiceImpl extends ServiceImpl<UserShippingAddr
      */
     @Override
     public Integer saveShippingAddress(AddressVO addressVO) {
-        System.out.println(addressVO);
+//        System.out.println(addressVO);
         UserShippingAddress convert = AddressConvert.INSTANCE.convert(addressVO);
         if (addressVO.getIsDefault() == AddressDefaultEnum.DEFAULT_ADDRESS.getValue()) {
             List<UserShippingAddress> list = baseMapper.selectList(new LambdaQueryWrapper<UserShippingAddress>()
