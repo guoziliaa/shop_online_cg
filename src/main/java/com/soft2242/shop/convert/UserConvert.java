@@ -21,22 +21,18 @@ public interface UserConvert {
     @Mapping(expression = "java(MapStruct.transferTimeStamp(entity.getBirthday()))", target = "birthday")
     User convert(UserVO entity);
 
-
     @Mapping(expression = "java(MapStruct.transferTime(user.getBirthday()))", target = "birthday")
     UserVO convertToUserVO(User user);
 
-
     LoginResultVO convertToLoginResultVO(User user);
-
 
     class MapStruct {
         public static Timestamp transferTime(LocalDateTime value) {
             return Timestamp.valueOf(value);
         }
 
-
-        public static LocalDateTime transferTimeStamp(Timestamp time){
-            return  time.toLocalDateTime();
+        public static LocalDateTime transferTimeStamp(Timestamp time) {
+            return time.toLocalDateTime();
         }
     }
 }

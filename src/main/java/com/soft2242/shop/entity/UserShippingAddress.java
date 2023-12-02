@@ -18,7 +18,7 @@ import lombok.Setter;
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Getter
 @Setter
@@ -60,7 +60,7 @@ public class UserShippingAddress {
 
     @ApiModelProperty("是否为默认地址(0-否，1-是)")
     @TableField("is_default")
-    private Byte isDefault;
+    private Integer isDefault;
 
     @ApiModelProperty("逻辑删除(0-未删除，1-已删除)")
     @TableField("delete_flag")

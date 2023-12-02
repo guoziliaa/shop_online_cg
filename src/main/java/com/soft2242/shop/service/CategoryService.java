@@ -8,24 +8,24 @@ import java.util.List;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 public interface CategoryService extends IService<Category> {
 
     /**
-     * 首页 - 分类列表
-     *
+     * 首页-分类列表
+     * 
      * @return
      */
     List<Category> getIndexCategoryList();
 
     /**
-     * 分类tab页 - 分类列表以及各分类下的商品
-     *
+     * tab分类页-商品分类
+     * 
      * @return
      */
     List<CategoryVO> getCategoryList();

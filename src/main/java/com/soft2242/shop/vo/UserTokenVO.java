@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.soft2242.shop.constant.APIConstant.APP_TOKEN_EXPIRE_TIME;
+import static com.soft2242.shop.common.constant.APIConstant.APP_TOKEN_EXPIRE_TIME;
 
 @Data
 @NoArgsConstructor
@@ -32,7 +32,6 @@ public class UserTokenVO {
         map.put("loginAt", this.loginAt);
         return map;
     }
-
 
     public UserTokenVO fromMap(Map map) {
         UserTokenVO userToken = new UserTokenVO();

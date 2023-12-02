@@ -1,12 +1,10 @@
 package com.soft2242.shop.service.impl;
 
-
 import com.soft2242.shop.service.RedisService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.ValueOperations;
 import org.springframework.stereotype.Service;
-
 
 import java.io.Serializable;
 import java.util.Set;

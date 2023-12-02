@@ -13,15 +13,21 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Service
-public class IndexRecommendServiceImpl extends ServiceImpl<IndexRecommendMapper, IndexRecommend> implements IndexRecommendService {
+public class IndexRecommendServiceImpl extends ServiceImpl<IndexRecommendMapper, IndexRecommend>
+    implements IndexRecommendService {
 
+    /**
+     * 首页-热门推荐
+     *
+     * @return
+     */
     @Override
     public List<IndexRecommendVO> getList() {
         LambdaQueryWrapper<IndexRecommend> wrapper = new LambdaQueryWrapper<>();

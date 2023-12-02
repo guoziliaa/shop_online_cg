@@ -9,7 +9,7 @@ public interface RedisService {
     /**
      * 添加 Redis术语中 string 类型的数据
      *
-     * @param key   key
+     * @param key key
      * @param value value
      * @return boolean
      */
@@ -18,8 +18,8 @@ public interface RedisService {
     /**
      * 添加 Redis术语中 string 类型的数据,并设置超时
      *
-     * @param key        key
-     * @param value      value
+     * @param key key
+     * @param value value
      * @param expireTime 过期时间
      * @return boolean
      */
@@ -36,9 +36,9 @@ public interface RedisService {
     /**
      * 根据Redis的key 获取值,如果出现异常则返回null
      *
-     * @param key  key
+     * @param key key
      * @param type 类型
-     * @param <T>  泛型
+     * @param <T> 泛型
      * @return 值
      */
     <T> T getValue(final String key, Class<T> type);

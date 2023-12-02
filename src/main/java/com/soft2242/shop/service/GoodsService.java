@@ -11,34 +11,34 @@ import com.soft2242.shop.vo.RecommendGoodsVO;
 
 /**
  * <p>
- *  服务类
+ * 服务类
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 public interface GoodsService extends IService<Goods> {
 
     /**
-     * 首页热门推荐 - 根据 tab Id 获取该推荐下的商品列表
-     *
+     * 热门推荐
+     * 
+     * @param query
      * @return
      */
     IndexTabRecommendVO getTabRecommendGoodsByTabId(RecommendByTabGoodsQuery query);
 
     /**
-     * 首页推荐 - 猜你喜欢(分页)
-     *
+     * 首页推荐-猜你喜欢（分页）
+     * 
      * @param query
      * @return
      */
     PageResult<RecommendGoodsVO> getRecommendGoodsByPage(Query query);
+
     /**
      * 根据id 获取商品详情
-     *
      * @param id
      * @return
      */
     GoodsVO getGoodsDetail(Integer id);
-
 }

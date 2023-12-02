@@ -15,11 +15,11 @@ import java.util.List;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Tag(name = "首页管理")
 @RestController
@@ -31,9 +31,8 @@ public class IndexCarouselController {
     @Operation(summary = "首页/商品分类页-推荐轮播图")
     @GetMapping("banner")
     public Result<List<IndexCarousel>> getList(@RequestParam Integer distributionSite) {
-
         List<IndexCarousel> list = indexCarouselService.getList(distributionSite);
         return Result.ok(list);
-
     }
+
 }

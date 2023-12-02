@@ -9,13 +9,19 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 public interface UserShoppingCartMapper extends BaseMapper<UserShoppingCart> {
 
+    /**
+     * 查询购物车信息
+     * 
+     * @param id
+     * @return
+     */
     List<CartGoodsVO> getCartGoodsInfo(@Param("id") Integer id);
 }

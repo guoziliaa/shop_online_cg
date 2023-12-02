@@ -20,7 +20,7 @@ import lombok.Setter;
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Getter
 @Setter
@@ -56,7 +56,7 @@ public class IndexCarousel {
     private LocalDateTime createTime;
 
     @ApiModelProperty("更新时间")
-    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     @JsonIgnore
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }

@@ -18,7 +18,7 @@ import java.util.List;
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Tag(name = "推荐管理")
 @RestController

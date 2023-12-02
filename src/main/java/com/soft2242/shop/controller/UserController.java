@@ -18,11 +18,11 @@ import static com.soft2242.shop.common.utils.ObtainUserIdUtils.getUserId;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Tag(name = "用户模块")
 @RestController
@@ -46,6 +46,7 @@ public class UserController {
         User userInfo = userService.getUserInfo(userId);
         return Result.ok(userInfo);
     }
+
     @Operation(summary = "修改用户信息")
     @PutMapping("/profile")
     private Result<UserVO> editUserInfo(HttpServletRequest request, @RequestBody @Validated UserVO userVO) {

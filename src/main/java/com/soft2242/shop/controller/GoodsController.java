@@ -9,6 +9,7 @@ import com.soft2242.shop.vo.GoodsVO;
 import com.soft2242.shop.vo.IndexTabRecommendVO;
 import com.soft2242.shop.vo.RecommendGoodsVO;
 import io.swagger.v3.oas.annotations.Operation;
+
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 import org.springframework.validation.annotation.Validated;
@@ -16,11 +17,11 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
- *  前端控制器
+ * 前端控制器
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Tag(name = "商品模块")
 @RestController
@@ -31,15 +32,10 @@ public class GoodsController {
 
     @Operation(summary = "首页-热门推荐商品列表")
     @PostMapping("preference")
-    public Result<IndexTabRecommendVO> getTabRecommendGoodsByTabId(@RequestBody @Validated RecommendByTabGoodsQuery query) {
+    public Result<IndexTabRecommendVO>
+        getTabRecommendGoodsByTabId(@RequestBody @Validated RecommendByTabGoodsQuery query) {
+        System.out.println(query);
         IndexTabRecommendVO result = goodsService.getTabRecommendGoodsByTabId(query);
-        return Result.ok(result);
-    }
-
-    @Operation(summary = "首页-猜你喜欢")
-    @PostMapping("guessLike")
-    public Result<PageResult<RecommendGoodsVO>> getRecommendGoodsByPage(@RequestBody @Validated Query query) {
-        PageResult<RecommendGoodsVO> result = goodsService.getRecommendGoodsByPage(query);
         return Result.ok(result);
     }
 
@@ -49,5 +45,11 @@ public class GoodsController {
         GoodsVO goodsDetail = goodsService.getGoodsDetail(id);
         return Result.ok(goodsDetail);
     }
-}
 
+    @Operation(summary = "首页-猜你喜欢")
+    @PostMapping("guessLike")
+    public Result<PageResult<RecommendGoodsVO>> getRecommendGoodsByPage(@RequestBody @Validated Query query) {
+        PageResult<RecommendGoodsVO> result = goodsService.getRecommendGoodsByPage(query);
+        return Result.ok(result);
+    }
+}

@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @RestControllerAdvice
 public class ServerExceptionHandler {
 
-
     /**
      * 处理自定义异常
      *
@@ -49,4 +48,3 @@ public class ServerExceptionHandler {
         return Result.error(ErrorCode.INTERNAL_SERVER_ERROR);
     }
 }
-

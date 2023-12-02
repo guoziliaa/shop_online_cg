@@ -20,37 +20,46 @@ import java.util.List;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author ycshang
- * @since 2023-11-09
+ * @since 2023-11-07
  */
 @Service
 @AllArgsConstructor
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
+    private final GoodsMapper goodsMapper;
 
-    private  final GoodsMapper goodsMapper;
-
+    /**
+     * 首页-分类列表
+     *
+     * @return
+     */
     @Override
     public List<Category> getIndexCategoryList() {
         LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper<>();
-//        查询首页和分类页都推荐的分类以及在首页推荐的分类
-        wrapper.eq(Category::getIsRecommend, CategoryRecommendEnum.ALL_RECOMMEND.getValue()).or().eq(Category::getIsRecommend, CategoryRecommendEnum.INDEX_RECOMMEND.getValue());
+        // 查询首页和分类页都推荐的分类以及首页推荐的分类
+        wrapper.eq(Category::getIsRecommend, CategoryRecommendEnum.ALL_RECOMMEND.getValue()).or();
         wrapper.orderByDesc(Category::getCreateTime);
         List<Category> list = baseMapper.selectList(wrapper);
         return list;
     }
 
-
+    /**
+     * tab分类页-商品分类
+     *
+     * @return
+     */
     @Override
     public List<CategoryVO> getCategoryList() {
         List<CategoryVO> list = new ArrayList<>();
-//        1、查询配置在分类tab页上的 父级分类
+        // 1、查询配置在分类tab页上的 父级分类
         LambdaQueryWrapper<Category> wrapper = new LambdaQueryWrapper<>();
-        wrapper.eq(Category::getIsRecommend, CategoryRecommendEnum.ALL_RECOMMEND.getValue()).or().eq(Category::getIsRecommend, CategoryRecommendEnum.CATEGORY_HOME_RECOMMEND.getValue());
+        wrapper.eq(Category::getIsRecommend, CategoryRecommendEnum.ALL_RECOMMEND.getValue()).or()
+            .eq(Category::getIsRecommend, CategoryRecommendEnum.CATEGORY_HOME_RECOMMEND.getValue());
         List<Category> categories = baseMapper.selectList(wrapper);
-//        2、查询该分类下的自己分类
+        // 2、查询该分类下的自己分类
         LambdaQueryWrapper<Goods> queryWrapper = new LambdaQueryWrapper<>();
         for (Category category : categories) {
             CategoryVO categoryVO = new CategoryVO();
@@ -61,7 +70,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
             wrapper.eq(Category::getParentId, category.getId());
             List<Category> childCategories = baseMapper.selectList(wrapper);
             List<CategoryChildrenGoodsVO> categoryChildrenGoodsList = new ArrayList<>();
-//            3、分类下的商品列表
+            // 3、分类下的商品列表
             for (Category item : childCategories) {
                 CategoryChildrenGoodsVO childrenGoodsVO = new CategoryChildrenGoodsVO();
                 childrenGoodsVO.setId(item.getId());
